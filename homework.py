@@ -1,5 +1,5 @@
 from datetime import datetime
-import random
+import random, re
 
 def get_days_from_today(date: str)-> int:                  # розрахунок кількості днів між date та поточною датою
     current_date = datetime.today().date()
@@ -17,4 +17,7 @@ def get_numbers_ticket(min=1, max=36, quantity=5):          # отримання
         numbers.add(random.randint(min, max)) # додаємо в неї довільні числа поки не наберемо кількість quantity
     sorted_numbers = sorted(numbers)          # перетворюємо на сортований список
     return sorted_numbers
+
+def normalize_phone(phone_number):
+    return "+380" + re.sub(r"\D*", "", phone_number)[-9:] # залишаємо тількі останні 9 цифр номера та добавляемо префікс: +380
 
